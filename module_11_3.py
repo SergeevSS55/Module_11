@@ -3,7 +3,8 @@ def introspection(obj):
     obj_type = type(obj).__name__
 
     # Получение атрибутов объекта
-    attributes = dir(obj)
+    attributes = [attribute for attribute in dir(obj)
+                  if not callable(getattr(obj, attribute))]
 
     # Получение методов объекта
     methods = [method for method in attributes if callable(getattr(obj, method))]
